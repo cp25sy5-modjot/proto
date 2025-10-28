@@ -1,0 +1,12 @@
+syntax = "proto3";
+
+package ai.v1;
+// The go_package must match your module path for imports to work:
+option go_package = "github.com/cp25sy5-modjot/proto/gen/ai/v1;aiwpb";
+
+service AIWrapper {
+  rpc SayHello(HelloRequest) returns (HelloReply);
+}
+
+message HelloRequest { string name = 1; }
+message HelloReply   { string message = 1; }
