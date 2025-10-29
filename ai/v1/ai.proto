@@ -3,9 +3,56 @@ syntax = "proto3";
 package ai.v1;
 option go_package = "github.com/cp25sy5-modjot/proto/gen/ai/v1;aiwpb";
 
-service AIWrapper {
-  rpc SayHello(HelloRequest) returns (HelloReply);
+service AiWrapperService {
+  rpc ExtractTextFromImage(ExtractTextRequest) returns (ExtractTextResponse);
+  rpc BuildTransactionFromText(BuildTransactionFromTextRequest) returns (TransactionResponse);
+  rpc BuildTransactionFromImage(BuildTransactionFromImageRequest) returns (TransactionResponse);
 }
 
-message HelloRequest { string name = 1; }
-message HelloReply   { string message = 1; }
+message ExtractTextRequest {
+  bytes image_data = 1;
+}
+
+message ExtractTextResponse {
+  string extracted_text = 1;
+}
+
+message BuildTransactionFromTextRequest {
+  string text_to_analyze = 1;
+  CategoryList categories = 2;
+}
+
+message BuildTransactionFromImageRequest {
+  bytes image_data = 1;
+  CategoryList categories = 2;
+}
+
+message TransactionResponse {
+  string title = 1;
+  double price = 2;
+  double amount = 3;
+  string date = 4;
+  string category = 5;
+}
+
+//category
+message CategoryList {
+    repeated Category categories = 1;
+}
+
+message Category {
+    string name = 1;
+}
+
+service HealthService {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
+}
+
+message HealthCheckRequest {
+  string name = 1;
+}
+
+message HealthCheckResponse {
+  bool healthy = 1;
+  string message = 2;
+} 

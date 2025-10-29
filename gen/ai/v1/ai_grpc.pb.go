@@ -19,101 +19,279 @@ import (
 const _ = grpc.SupportPackageIsVersion9
 
 const (
-	AIWrapper_SayHello_FullMethodName = "/ai.v1.AIWrapper/SayHello"
+	AiWrapperService_ExtractTextFromImage_FullMethodName      = "/ai.v1.AiWrapperService/ExtractTextFromImage"
+	AiWrapperService_BuildTransactionFromText_FullMethodName  = "/ai.v1.AiWrapperService/BuildTransactionFromText"
+	AiWrapperService_BuildTransactionFromImage_FullMethodName = "/ai.v1.AiWrapperService/BuildTransactionFromImage"
 )
 
-// AIWrapperClient is the client API for AIWrapper service.
+// AiWrapperServiceClient is the client API for AiWrapperService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
-type AIWrapperClient interface {
-	SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error)
+type AiWrapperServiceClient interface {
+	ExtractTextFromImage(ctx context.Context, in *ExtractTextRequest, opts ...grpc.CallOption) (*ExtractTextResponse, error)
+	BuildTransactionFromText(ctx context.Context, in *BuildTransactionFromTextRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
+	BuildTransactionFromImage(ctx context.Context, in *BuildTransactionFromImageRequest, opts ...grpc.CallOption) (*TransactionResponse, error)
 }
 
-type aIWrapperClient struct {
+type aiWrapperServiceClient struct {
 	cc grpc.ClientConnInterface
 }
 
-func NewAIWrapperClient(cc grpc.ClientConnInterface) AIWrapperClient {
-	return &aIWrapperClient{cc}
+func NewAiWrapperServiceClient(cc grpc.ClientConnInterface) AiWrapperServiceClient {
+	return &aiWrapperServiceClient{cc}
 }
 
-func (c *aIWrapperClient) SayHello(ctx context.Context, in *HelloRequest, opts ...grpc.CallOption) (*HelloReply, error) {
+func (c *aiWrapperServiceClient) ExtractTextFromImage(ctx context.Context, in *ExtractTextRequest, opts ...grpc.CallOption) (*ExtractTextResponse, error) {
 	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
-	out := new(HelloReply)
-	err := c.cc.Invoke(ctx, AIWrapper_SayHello_FullMethodName, in, out, cOpts...)
+	out := new(ExtractTextResponse)
+	err := c.cc.Invoke(ctx, AiWrapperService_ExtractTextFromImage_FullMethodName, in, out, cOpts...)
 	if err != nil {
 		return nil, err
 	}
 	return out, nil
 }
 
-// AIWrapperServer is the server API for AIWrapper service.
-// All implementations must embed UnimplementedAIWrapperServer
-// for forward compatibility.
-type AIWrapperServer interface {
-	SayHello(context.Context, *HelloRequest) (*HelloReply, error)
-	mustEmbedUnimplementedAIWrapperServer()
+func (c *aiWrapperServiceClient) BuildTransactionFromText(ctx context.Context, in *BuildTransactionFromTextRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TransactionResponse)
+	err := c.cc.Invoke(ctx, AiWrapperService_BuildTransactionFromText_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
 }
 
-// UnimplementedAIWrapperServer must be embedded to have
+func (c *aiWrapperServiceClient) BuildTransactionFromImage(ctx context.Context, in *BuildTransactionFromImageRequest, opts ...grpc.CallOption) (*TransactionResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(TransactionResponse)
+	err := c.cc.Invoke(ctx, AiWrapperService_BuildTransactionFromImage_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// AiWrapperServiceServer is the server API for AiWrapperService service.
+// All implementations must embed UnimplementedAiWrapperServiceServer
+// for forward compatibility.
+type AiWrapperServiceServer interface {
+	ExtractTextFromImage(context.Context, *ExtractTextRequest) (*ExtractTextResponse, error)
+	BuildTransactionFromText(context.Context, *BuildTransactionFromTextRequest) (*TransactionResponse, error)
+	BuildTransactionFromImage(context.Context, *BuildTransactionFromImageRequest) (*TransactionResponse, error)
+	mustEmbedUnimplementedAiWrapperServiceServer()
+}
+
+// UnimplementedAiWrapperServiceServer must be embedded to have
 // forward compatible implementations.
 //
 // NOTE: this should be embedded by value instead of pointer to avoid a nil
 // pointer dereference when methods are called.
-type UnimplementedAIWrapperServer struct{}
+type UnimplementedAiWrapperServiceServer struct{}
 
-func (UnimplementedAIWrapperServer) SayHello(context.Context, *HelloRequest) (*HelloReply, error) {
-	return nil, status.Errorf(codes.Unimplemented, "method SayHello not implemented")
+func (UnimplementedAiWrapperServiceServer) ExtractTextFromImage(context.Context, *ExtractTextRequest) (*ExtractTextResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method ExtractTextFromImage not implemented")
 }
-func (UnimplementedAIWrapperServer) mustEmbedUnimplementedAIWrapperServer() {}
-func (UnimplementedAIWrapperServer) testEmbeddedByValue()                   {}
+func (UnimplementedAiWrapperServiceServer) BuildTransactionFromText(context.Context, *BuildTransactionFromTextRequest) (*TransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildTransactionFromText not implemented")
+}
+func (UnimplementedAiWrapperServiceServer) BuildTransactionFromImage(context.Context, *BuildTransactionFromImageRequest) (*TransactionResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method BuildTransactionFromImage not implemented")
+}
+func (UnimplementedAiWrapperServiceServer) mustEmbedUnimplementedAiWrapperServiceServer() {}
+func (UnimplementedAiWrapperServiceServer) testEmbeddedByValue()                          {}
 
-// UnsafeAIWrapperServer may be embedded to opt out of forward compatibility for this service.
-// Use of this interface is not recommended, as added methods to AIWrapperServer will
+// UnsafeAiWrapperServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to AiWrapperServiceServer will
 // result in compilation errors.
-type UnsafeAIWrapperServer interface {
-	mustEmbedUnimplementedAIWrapperServer()
+type UnsafeAiWrapperServiceServer interface {
+	mustEmbedUnimplementedAiWrapperServiceServer()
 }
 
-func RegisterAIWrapperServer(s grpc.ServiceRegistrar, srv AIWrapperServer) {
-	// If the following call pancis, it indicates UnimplementedAIWrapperServer was
+func RegisterAiWrapperServiceServer(s grpc.ServiceRegistrar, srv AiWrapperServiceServer) {
+	// If the following call pancis, it indicates UnimplementedAiWrapperServiceServer was
 	// embedded by pointer and is nil.  This will cause panics if an
 	// unimplemented method is ever invoked, so we test this at initialization
 	// time to prevent it from happening at runtime later due to I/O.
 	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
 		t.testEmbeddedByValue()
 	}
-	s.RegisterService(&AIWrapper_ServiceDesc, srv)
+	s.RegisterService(&AiWrapperService_ServiceDesc, srv)
 }
 
-func _AIWrapper_SayHello_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
-	in := new(HelloRequest)
+func _AiWrapperService_ExtractTextFromImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(ExtractTextRequest)
 	if err := dec(in); err != nil {
 		return nil, err
 	}
 	if interceptor == nil {
-		return srv.(AIWrapperServer).SayHello(ctx, in)
+		return srv.(AiWrapperServiceServer).ExtractTextFromImage(ctx, in)
 	}
 	info := &grpc.UnaryServerInfo{
 		Server:     srv,
-		FullMethod: AIWrapper_SayHello_FullMethodName,
+		FullMethod: AiWrapperService_ExtractTextFromImage_FullMethodName,
 	}
 	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
-		return srv.(AIWrapperServer).SayHello(ctx, req.(*HelloRequest))
+		return srv.(AiWrapperServiceServer).ExtractTextFromImage(ctx, req.(*ExtractTextRequest))
 	}
 	return interceptor(ctx, in, info, handler)
 }
 
-// AIWrapper_ServiceDesc is the grpc.ServiceDesc for AIWrapper service.
+func _AiWrapperService_BuildTransactionFromText_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildTransactionFromTextRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AiWrapperServiceServer).BuildTransactionFromText(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AiWrapperService_BuildTransactionFromText_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AiWrapperServiceServer).BuildTransactionFromText(ctx, req.(*BuildTransactionFromTextRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+func _AiWrapperService_BuildTransactionFromImage_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(BuildTransactionFromImageRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(AiWrapperServiceServer).BuildTransactionFromImage(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: AiWrapperService_BuildTransactionFromImage_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(AiWrapperServiceServer).BuildTransactionFromImage(ctx, req.(*BuildTransactionFromImageRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// AiWrapperService_ServiceDesc is the grpc.ServiceDesc for AiWrapperService service.
 // It's only intended for direct use with grpc.RegisterService,
 // and not to be introspected or modified (even as a copy)
-var AIWrapper_ServiceDesc = grpc.ServiceDesc{
-	ServiceName: "ai.v1.AIWrapper",
-	HandlerType: (*AIWrapperServer)(nil),
+var AiWrapperService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "ai.v1.AiWrapperService",
+	HandlerType: (*AiWrapperServiceServer)(nil),
 	Methods: []grpc.MethodDesc{
 		{
-			MethodName: "SayHello",
-			Handler:    _AIWrapper_SayHello_Handler,
+			MethodName: "ExtractTextFromImage",
+			Handler:    _AiWrapperService_ExtractTextFromImage_Handler,
+		},
+		{
+			MethodName: "BuildTransactionFromText",
+			Handler:    _AiWrapperService_BuildTransactionFromText_Handler,
+		},
+		{
+			MethodName: "BuildTransactionFromImage",
+			Handler:    _AiWrapperService_BuildTransactionFromImage_Handler,
+		},
+	},
+	Streams:  []grpc.StreamDesc{},
+	Metadata: "ai/v1/ai.proto",
+}
+
+const (
+	HealthService_Check_FullMethodName = "/ai.v1.HealthService/Check"
+)
+
+// HealthServiceClient is the client API for HealthService service.
+//
+// For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+type HealthServiceClient interface {
+	Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
+}
+
+type healthServiceClient struct {
+	cc grpc.ClientConnInterface
+}
+
+func NewHealthServiceClient(cc grpc.ClientConnInterface) HealthServiceClient {
+	return &healthServiceClient{cc}
+}
+
+func (c *healthServiceClient) Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error) {
+	cOpts := append([]grpc.CallOption{grpc.StaticMethod()}, opts...)
+	out := new(HealthCheckResponse)
+	err := c.cc.Invoke(ctx, HealthService_Check_FullMethodName, in, out, cOpts...)
+	if err != nil {
+		return nil, err
+	}
+	return out, nil
+}
+
+// HealthServiceServer is the server API for HealthService service.
+// All implementations must embed UnimplementedHealthServiceServer
+// for forward compatibility.
+type HealthServiceServer interface {
+	Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
+	mustEmbedUnimplementedHealthServiceServer()
+}
+
+// UnimplementedHealthServiceServer must be embedded to have
+// forward compatible implementations.
+//
+// NOTE: this should be embedded by value instead of pointer to avoid a nil
+// pointer dereference when methods are called.
+type UnimplementedHealthServiceServer struct{}
+
+func (UnimplementedHealthServiceServer) Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error) {
+	return nil, status.Errorf(codes.Unimplemented, "method Check not implemented")
+}
+func (UnimplementedHealthServiceServer) mustEmbedUnimplementedHealthServiceServer() {}
+func (UnimplementedHealthServiceServer) testEmbeddedByValue()                       {}
+
+// UnsafeHealthServiceServer may be embedded to opt out of forward compatibility for this service.
+// Use of this interface is not recommended, as added methods to HealthServiceServer will
+// result in compilation errors.
+type UnsafeHealthServiceServer interface {
+	mustEmbedUnimplementedHealthServiceServer()
+}
+
+func RegisterHealthServiceServer(s grpc.ServiceRegistrar, srv HealthServiceServer) {
+	// If the following call pancis, it indicates UnimplementedHealthServiceServer was
+	// embedded by pointer and is nil.  This will cause panics if an
+	// unimplemented method is ever invoked, so we test this at initialization
+	// time to prevent it from happening at runtime later due to I/O.
+	if t, ok := srv.(interface{ testEmbeddedByValue() }); ok {
+		t.testEmbeddedByValue()
+	}
+	s.RegisterService(&HealthService_ServiceDesc, srv)
+}
+
+func _HealthService_Check_Handler(srv interface{}, ctx context.Context, dec func(interface{}) error, interceptor grpc.UnaryServerInterceptor) (interface{}, error) {
+	in := new(HealthCheckRequest)
+	if err := dec(in); err != nil {
+		return nil, err
+	}
+	if interceptor == nil {
+		return srv.(HealthServiceServer).Check(ctx, in)
+	}
+	info := &grpc.UnaryServerInfo{
+		Server:     srv,
+		FullMethod: HealthService_Check_FullMethodName,
+	}
+	handler := func(ctx context.Context, req interface{}) (interface{}, error) {
+		return srv.(HealthServiceServer).Check(ctx, req.(*HealthCheckRequest))
+	}
+	return interceptor(ctx, in, info, handler)
+}
+
+// HealthService_ServiceDesc is the grpc.ServiceDesc for HealthService service.
+// It's only intended for direct use with grpc.RegisterService,
+// and not to be introspected or modified (even as a copy)
+var HealthService_ServiceDesc = grpc.ServiceDesc{
+	ServiceName: "ai.v1.HealthService",
+	HandlerType: (*HealthServiceServer)(nil),
+	Methods: []grpc.MethodDesc{
+		{
+			MethodName: "Check",
+			Handler:    _HealthService_Check_Handler,
 		},
 	},
 	Streams:  []grpc.StreamDesc{},
