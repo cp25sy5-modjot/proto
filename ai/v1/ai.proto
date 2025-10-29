@@ -37,11 +37,7 @@ message TransactionResponse {
 
 //category
 message CategoryList {
-    repeated Category categories = 1;
-}
-
-message Category {
-    string name = 1;
+    repeated string categories = 1;
 }
 
 service HealthService {
