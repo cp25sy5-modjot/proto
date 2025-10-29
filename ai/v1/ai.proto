@@ -19,7 +19,7 @@ message ExtractTextResponse {
 
 message BuildTransactionFromTextRequest {
   string text_to_analyze = 1;
-  CategoryList categories = 2;
+  repeated string categories = 2;
 }
 
 message BuildTransactionFromImageRequest {
@@ -35,10 +35,6 @@ message TransactionResponse {
   string category = 5;
 }
 
-//category
-message CategoryList {
-    repeated string categories = 1;
-}
 
 service HealthService {
   rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
