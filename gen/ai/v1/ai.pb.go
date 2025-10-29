@@ -112,7 +112,7 @@ func (x *ExtractTextResponse) GetExtractedText() string {
 type BuildTransactionFromTextRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	TextToAnalyze string                 `protobuf:"bytes,1,opt,name=text_to_analyze,json=textToAnalyze,proto3" json:"text_to_analyze,omitempty"`
-	Categories    *CategoryList          `protobuf:"bytes,2,opt,name=categories,proto3" json:"categories,omitempty"`
+	Categories    []string               `protobuf:"bytes,2,rep,name=categories,proto3" json:"categories,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -154,7 +154,7 @@ func (x *BuildTransactionFromTextRequest) GetTextToAnalyze() string {
 	return ""
 }
 
-func (x *BuildTransactionFromTextRequest) GetCategories() *CategoryList {
+func (x *BuildTransactionFromTextRequest) GetCategories() []string {
 	if x != nil {
 		return x.Categories
 	}
@@ -164,7 +164,7 @@ func (x *BuildTransactionFromTextRequest) GetCategories() *CategoryList {
 type BuildTransactionFromImageRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	ImageData     []byte                 `protobuf:"bytes,1,opt,name=image_data,json=imageData,proto3" json:"image_data,omitempty"`
-	Categories    *CategoryList          `protobuf:"bytes,2,opt,name=categories,proto3" json:"categories,omitempty"`
+	Categories    []string               `protobuf:"bytes,2,rep,name=categories,proto3" json:"categories,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -206,7 +206,7 @@ func (x *BuildTransactionFromImageRequest) GetImageData() []byte {
 	return nil
 }
 
-func (x *BuildTransactionFromImageRequest) GetCategories() *CategoryList {
+func (x *BuildTransactionFromImageRequest) GetCategories() []string {
 	if x != nil {
 		return x.Categories
 	}
@@ -289,95 +289,6 @@ func (x *TransactionResponse) GetCategory() string {
 	return ""
 }
 
-// category
-type CategoryList struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Categories    []*Category            `protobuf:"bytes,1,rep,name=categories,proto3" json:"categories,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *CategoryList) Reset() {
-	*x = CategoryList{}
-	mi := &file_ai_v1_ai_proto_msgTypes[5]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *CategoryList) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*CategoryList) ProtoMessage() {}
-
-func (x *CategoryList) ProtoReflect() protoreflect.Message {
-	mi := &file_ai_v1_ai_proto_msgTypes[5]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use CategoryList.ProtoReflect.Descriptor instead.
-func (*CategoryList) Descriptor() ([]byte, []int) {
-	return file_ai_v1_ai_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *CategoryList) GetCategories() []*Category {
-	if x != nil {
-		return x.Categories
-	}
-	return nil
-}
-
-type Category struct {
-	state         protoimpl.MessageState `protogen:"open.v1"`
-	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
-	unknownFields protoimpl.UnknownFields
-	sizeCache     protoimpl.SizeCache
-}
-
-func (x *Category) Reset() {
-	*x = Category{}
-	mi := &file_ai_v1_ai_proto_msgTypes[6]
-	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-	ms.StoreMessageInfo(mi)
-}
-
-func (x *Category) String() string {
-	return protoimpl.X.MessageStringOf(x)
-}
-
-func (*Category) ProtoMessage() {}
-
-func (x *Category) ProtoReflect() protoreflect.Message {
-	mi := &file_ai_v1_ai_proto_msgTypes[6]
-	if x != nil {
-		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
-		if ms.LoadMessageInfo() == nil {
-			ms.StoreMessageInfo(mi)
-		}
-		return ms
-	}
-	return mi.MessageOf(x)
-}
-
-// Deprecated: Use Category.ProtoReflect.Descriptor instead.
-func (*Category) Descriptor() ([]byte, []int) {
-	return file_ai_v1_ai_proto_rawDescGZIP(), []int{6}
-}
-
-func (x *Category) GetName() string {
-	if x != nil {
-		return x.Name
-	}
-	return ""
-}
-
 type HealthCheckRequest struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Name          string                 `protobuf:"bytes,1,opt,name=name,proto3" json:"name,omitempty"`
@@ -387,7 +298,7 @@ type HealthCheckRequest struct {
 
 func (x *HealthCheckRequest) Reset() {
 	*x = HealthCheckRequest{}
-	mi := &file_ai_v1_ai_proto_msgTypes[7]
+	mi := &file_ai_v1_ai_proto_msgTypes[5]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -399,7 +310,7 @@ func (x *HealthCheckRequest) String() string {
 func (*HealthCheckRequest) ProtoMessage() {}
 
 func (x *HealthCheckRequest) ProtoReflect() protoreflect.Message {
-	mi := &file_ai_v1_ai_proto_msgTypes[7]
+	mi := &file_ai_v1_ai_proto_msgTypes[5]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -412,7 +323,7 @@ func (x *HealthCheckRequest) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthCheckRequest.ProtoReflect.Descriptor instead.
 func (*HealthCheckRequest) Descriptor() ([]byte, []int) {
-	return file_ai_v1_ai_proto_rawDescGZIP(), []int{7}
+	return file_ai_v1_ai_proto_rawDescGZIP(), []int{5}
 }
 
 func (x *HealthCheckRequest) GetName() string {
@@ -432,7 +343,7 @@ type HealthCheckResponse struct {
 
 func (x *HealthCheckResponse) Reset() {
 	*x = HealthCheckResponse{}
-	mi := &file_ai_v1_ai_proto_msgTypes[8]
+	mi := &file_ai_v1_ai_proto_msgTypes[6]
 	ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 	ms.StoreMessageInfo(mi)
 }
@@ -444,7 +355,7 @@ func (x *HealthCheckResponse) String() string {
 func (*HealthCheckResponse) ProtoMessage() {}
 
 func (x *HealthCheckResponse) ProtoReflect() protoreflect.Message {
-	mi := &file_ai_v1_ai_proto_msgTypes[8]
+	mi := &file_ai_v1_ai_proto_msgTypes[6]
 	if x != nil {
 		ms := protoimpl.X.MessageStateOf(protoimpl.Pointer(x))
 		if ms.LoadMessageInfo() == nil {
@@ -457,7 +368,7 @@ func (x *HealthCheckResponse) ProtoReflect() protoreflect.Message {
 
 // Deprecated: Use HealthCheckResponse.ProtoReflect.Descriptor instead.
 func (*HealthCheckResponse) Descriptor() ([]byte, []int) {
-	return file_ai_v1_ai_proto_rawDescGZIP(), []int{8}
+	return file_ai_v1_ai_proto_rawDescGZIP(), []int{6}
 }
 
 func (x *HealthCheckResponse) GetHealthy() bool {
@@ -483,30 +394,24 @@ const file_ai_v1_ai_proto_rawDesc = "" +
 	"\n" +
 	"image_data\x18\x01 \x01(\fR\timageData\"<\n" +
 	"\x13ExtractTextResponse\x12%\n" +
-	"\x0eextracted_text\x18\x01 \x01(\tR\rextractedText\"~\n" +
+	"\x0eextracted_text\x18\x01 \x01(\tR\rextractedText\"i\n" +
 	"\x1fBuildTransactionFromTextRequest\x12&\n" +
-	"\x0ftext_to_analyze\x18\x01 \x01(\tR\rtextToAnalyze\x123\n" +
+	"\x0ftext_to_analyze\x18\x01 \x01(\tR\rtextToAnalyze\x12\x1e\n" +
 	"\n" +
-	"categories\x18\x02 \x01(\v2\x13.ai.v1.CategoryListR\n" +
-	"categories\"v\n" +
+	"categories\x18\x02 \x03(\tR\n" +
+	"categories\"a\n" +
 	" BuildTransactionFromImageRequest\x12\x1d\n" +
 	"\n" +
-	"image_data\x18\x01 \x01(\fR\timageData\x123\n" +
+	"image_data\x18\x01 \x01(\fR\timageData\x12\x1e\n" +
 	"\n" +
-	"categories\x18\x02 \x01(\v2\x13.ai.v1.CategoryListR\n" +
+	"categories\x18\x02 \x03(\tR\n" +
 	"categories\"\x89\x01\n" +
 	"\x13TransactionResponse\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x14\n" +
 	"\x05price\x18\x02 \x01(\x01R\x05price\x12\x16\n" +
 	"\x06amount\x18\x03 \x01(\x01R\x06amount\x12\x12\n" +
 	"\x04date\x18\x04 \x01(\tR\x04date\x12\x1a\n" +
-	"\bcategory\x18\x05 \x01(\tR\bcategory\"?\n" +
-	"\fCategoryList\x12/\n" +
-	"\n" +
-	"categories\x18\x01 \x03(\v2\x0f.ai.v1.CategoryR\n" +
-	"categories\"\x1e\n" +
-	"\bCategory\x12\x12\n" +
-	"\x04name\x18\x01 \x01(\tR\x04name\"(\n" +
+	"\bcategory\x18\x05 \x01(\tR\bcategory\"(\n" +
 	"\x12HealthCheckRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"I\n" +
 	"\x13HealthCheckResponse\x12\x18\n" +
@@ -531,35 +436,30 @@ func file_ai_v1_ai_proto_rawDescGZIP() []byte {
 	return file_ai_v1_ai_proto_rawDescData
 }
 
-var file_ai_v1_ai_proto_msgTypes = make([]protoimpl.MessageInfo, 9)
+var file_ai_v1_ai_proto_msgTypes = make([]protoimpl.MessageInfo, 7)
 var file_ai_v1_ai_proto_goTypes = []any{
 	(*ExtractTextRequest)(nil),               // 0: ai.v1.ExtractTextRequest
 	(*ExtractTextResponse)(nil),              // 1: ai.v1.ExtractTextResponse
 	(*BuildTransactionFromTextRequest)(nil),  // 2: ai.v1.BuildTransactionFromTextRequest
 	(*BuildTransactionFromImageRequest)(nil), // 3: ai.v1.BuildTransactionFromImageRequest
 	(*TransactionResponse)(nil),              // 4: ai.v1.TransactionResponse
-	(*CategoryList)(nil),                     // 5: ai.v1.CategoryList
-	(*Category)(nil),                         // 6: ai.v1.Category
-	(*HealthCheckRequest)(nil),               // 7: ai.v1.HealthCheckRequest
-	(*HealthCheckResponse)(nil),              // 8: ai.v1.HealthCheckResponse
+	(*HealthCheckRequest)(nil),               // 5: ai.v1.HealthCheckRequest
+	(*HealthCheckResponse)(nil),              // 6: ai.v1.HealthCheckResponse
 }
 var file_ai_v1_ai_proto_depIdxs = []int32{
-	5, // 0: ai.v1.BuildTransactionFromTextRequest.categories:type_name -> ai.v1.CategoryList
-	5, // 1: ai.v1.BuildTransactionFromImageRequest.categories:type_name -> ai.v1.CategoryList
-	6, // 2: ai.v1.CategoryList.categories:type_name -> ai.v1.Category
-	0, // 3: ai.v1.AiWrapperService.ExtractTextFromImage:input_type -> ai.v1.ExtractTextRequest
-	2, // 4: ai.v1.AiWrapperService.BuildTransactionFromText:input_type -> ai.v1.BuildTransactionFromTextRequest
-	3, // 5: ai.v1.AiWrapperService.BuildTransactionFromImage:input_type -> ai.v1.BuildTransactionFromImageRequest
-	7, // 6: ai.v1.HealthService.Check:input_type -> ai.v1.HealthCheckRequest
-	1, // 7: ai.v1.AiWrapperService.ExtractTextFromImage:output_type -> ai.v1.ExtractTextResponse
-	4, // 8: ai.v1.AiWrapperService.BuildTransactionFromText:output_type -> ai.v1.TransactionResponse
-	4, // 9: ai.v1.AiWrapperService.BuildTransactionFromImage:output_type -> ai.v1.TransactionResponse
-	8, // 10: ai.v1.HealthService.Check:output_type -> ai.v1.HealthCheckResponse
-	7, // [7:11] is the sub-list for method output_type
-	3, // [3:7] is the sub-list for method input_type
-	3, // [3:3] is the sub-list for extension type_name
-	3, // [3:3] is the sub-list for extension extendee
-	0, // [0:3] is the sub-list for field type_name
+	0, // 0: ai.v1.AiWrapperService.ExtractTextFromImage:input_type -> ai.v1.ExtractTextRequest
+	2, // 1: ai.v1.AiWrapperService.BuildTransactionFromText:input_type -> ai.v1.BuildTransactionFromTextRequest
+	3, // 2: ai.v1.AiWrapperService.BuildTransactionFromImage:input_type -> ai.v1.BuildTransactionFromImageRequest
+	5, // 3: ai.v1.HealthService.Check:input_type -> ai.v1.HealthCheckRequest
+	1, // 4: ai.v1.AiWrapperService.ExtractTextFromImage:output_type -> ai.v1.ExtractTextResponse
+	4, // 5: ai.v1.AiWrapperService.BuildTransactionFromText:output_type -> ai.v1.TransactionResponse
+	4, // 6: ai.v1.AiWrapperService.BuildTransactionFromImage:output_type -> ai.v1.TransactionResponse
+	6, // 7: ai.v1.HealthService.Check:output_type -> ai.v1.HealthCheckResponse
+	4, // [4:8] is the sub-list for method output_type
+	0, // [0:4] is the sub-list for method input_type
+	0, // [0:0] is the sub-list for extension type_name
+	0, // [0:0] is the sub-list for extension extendee
+	0, // [0:0] is the sub-list for field type_name
 }
 
 func init() { file_ai_v1_ai_proto_init() }
@@ -573,7 +473,7 @@ func file_ai_v1_ai_proto_init() {
 			GoPackagePath: reflect.TypeOf(x{}).PkgPath(),
 			RawDescriptor: unsafe.Slice(unsafe.StringData(file_ai_v1_ai_proto_rawDesc), len(file_ai_v1_ai_proto_rawDesc)),
 			NumEnums:      0,
-			NumMessages:   9,
+			NumMessages:   7,
 			NumExtensions: 0,
 			NumServices:   2,
 		},
