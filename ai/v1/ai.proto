@@ -31,7 +31,7 @@ message BuildTransactionFromImageRequest {
 message TransactionResponse {
   string title = 1;
   double price = 2;
-  double amount = 3;
+  double quantity = 3;
   string date = 4;
   string category = 5;
 }

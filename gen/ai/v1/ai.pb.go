@@ -217,7 +217,7 @@ type TransactionResponse struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
 	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Price         float64                `protobuf:"fixed64,2,opt,name=price,proto3" json:"price,omitempty"`
-	Amount        float64                `protobuf:"fixed64,3,opt,name=amount,proto3" json:"amount,omitempty"`
+	Quantity      float64                `protobuf:"fixed64,3,opt,name=quantity,proto3" json:"quantity,omitempty"`
 	Date          string                 `protobuf:"bytes,4,opt,name=date,proto3" json:"date,omitempty"`
 	Category      string                 `protobuf:"bytes,5,opt,name=category,proto3" json:"category,omitempty"`
 	unknownFields protoimpl.UnknownFields
@@ -268,9 +268,9 @@ func (x *TransactionResponse) GetPrice() float64 {
 	return 0
 }
 
-func (x *TransactionResponse) GetAmount() float64 {
+func (x *TransactionResponse) GetQuantity() float64 {
 	if x != nil {
-		return x.Amount
+		return x.Quantity
 	}
 	return 0
 }
@@ -405,11 +405,11 @@ const file_ai_v1_ai_proto_rawDesc = "" +
 	"image_data\x18\x01 \x01(\fR\timageData\x12\x1e\n" +
 	"\n" +
 	"categories\x18\x02 \x03(\tR\n" +
-	"categories\"\x89\x01\n" +
+	"categories\"\x8d\x01\n" +
 	"\x13TransactionResponse\x12\x14\n" +
 	"\x05title\x18\x01 \x01(\tR\x05title\x12\x14\n" +
-	"\x05price\x18\x02 \x01(\x01R\x05price\x12\x16\n" +
-	"\x06amount\x18\x03 \x01(\x01R\x06amount\x12\x12\n" +
+	"\x05price\x18\x02 \x01(\x01R\x05price\x12\x1a\n" +
+	"\bquantity\x18\x03 \x01(\x01R\bquantity\x12\x12\n" +
 	"\x04date\x18\x04 \x01(\tR\x04date\x12\x1a\n" +
 	"\bcategory\x18\x05 \x01(\tR\bcategory\"(\n" +
 	"\x12HealthCheckRequest\x12\x12\n" +
