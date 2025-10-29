@@ -4,6 +4,7 @@ package ai.v1;
 option go_package = "github.com/cp25sy5-modjot/proto/gen/ai/v1;aiwpb";
 
 service AiWrapperService {
+  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
   rpc ExtractTextFromImage(ExtractTextRequest) returns (ExtractTextResponse);
   rpc BuildTransactionFromText(BuildTransactionFromTextRequest) returns (TransactionResponse);
   rpc BuildTransactionFromImage(BuildTransactionFromImageRequest) returns (TransactionResponse);
@@ -33,11 +34,6 @@ message TransactionResponse {
   double amount = 3;
   string date = 4;
   string category = 5;
-}
-
-
-service HealthService {
-  rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
 }
 
 message HealthCheckRequest {

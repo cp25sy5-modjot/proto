@@ -416,13 +416,12 @@ const file_ai_v1_ai_proto_rawDesc = "" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"I\n" +
 	"\x13HealthCheckResponse\x12\x18\n" +
 	"\ahealthy\x18\x01 \x01(\bR\ahealthy\x12\x18\n" +
-	"\amessage\x18\x02 \x01(\tR\amessage2\xa3\x02\n" +
-	"\x10AiWrapperService\x12M\n" +
+	"\amessage\x18\x02 \x01(\tR\amessage2\xe3\x02\n" +
+	"\x10AiWrapperService\x12>\n" +
+	"\x05Check\x12\x19.ai.v1.HealthCheckRequest\x1a\x1a.ai.v1.HealthCheckResponse\x12M\n" +
 	"\x14ExtractTextFromImage\x12\x19.ai.v1.ExtractTextRequest\x1a\x1a.ai.v1.ExtractTextResponse\x12^\n" +
 	"\x18BuildTransactionFromText\x12&.ai.v1.BuildTransactionFromTextRequest\x1a\x1a.ai.v1.TransactionResponse\x12`\n" +
-	"\x19BuildTransactionFromImage\x12'.ai.v1.BuildTransactionFromImageRequest\x1a\x1a.ai.v1.TransactionResponse2O\n" +
-	"\rHealthService\x12>\n" +
-	"\x05Check\x12\x19.ai.v1.HealthCheckRequest\x1a\x1a.ai.v1.HealthCheckResponseB1Z/github.com/cp25sy5-modjot/proto/gen/ai/v1;aiwpbb\x06proto3"
+	"\x19BuildTransactionFromImage\x12'.ai.v1.BuildTransactionFromImageRequest\x1a\x1a.ai.v1.TransactionResponseB1Z/github.com/cp25sy5-modjot/proto/gen/ai/v1;aiwpbb\x06proto3"
 
 var (
 	file_ai_v1_ai_proto_rawDescOnce sync.Once
@@ -447,14 +446,14 @@ var file_ai_v1_ai_proto_goTypes = []any{
 	(*HealthCheckResponse)(nil),              // 6: ai.v1.HealthCheckResponse
 }
 var file_ai_v1_ai_proto_depIdxs = []int32{
-	0, // 0: ai.v1.AiWrapperService.ExtractTextFromImage:input_type -> ai.v1.ExtractTextRequest
-	2, // 1: ai.v1.AiWrapperService.BuildTransactionFromText:input_type -> ai.v1.BuildTransactionFromTextRequest
-	3, // 2: ai.v1.AiWrapperService.BuildTransactionFromImage:input_type -> ai.v1.BuildTransactionFromImageRequest
-	5, // 3: ai.v1.HealthService.Check:input_type -> ai.v1.HealthCheckRequest
-	1, // 4: ai.v1.AiWrapperService.ExtractTextFromImage:output_type -> ai.v1.ExtractTextResponse
-	4, // 5: ai.v1.AiWrapperService.BuildTransactionFromText:output_type -> ai.v1.TransactionResponse
-	4, // 6: ai.v1.AiWrapperService.BuildTransactionFromImage:output_type -> ai.v1.TransactionResponse
-	6, // 7: ai.v1.HealthService.Check:output_type -> ai.v1.HealthCheckResponse
+	5, // 0: ai.v1.AiWrapperService.Check:input_type -> ai.v1.HealthCheckRequest
+	0, // 1: ai.v1.AiWrapperService.ExtractTextFromImage:input_type -> ai.v1.ExtractTextRequest
+	2, // 2: ai.v1.AiWrapperService.BuildTransactionFromText:input_type -> ai.v1.BuildTransactionFromTextRequest
+	3, // 3: ai.v1.AiWrapperService.BuildTransactionFromImage:input_type -> ai.v1.BuildTransactionFromImageRequest
+	6, // 4: ai.v1.AiWrapperService.Check:output_type -> ai.v1.HealthCheckResponse
+	1, // 5: ai.v1.AiWrapperService.ExtractTextFromImage:output_type -> ai.v1.ExtractTextResponse
+	4, // 6: ai.v1.AiWrapperService.BuildTransactionFromText:output_type -> ai.v1.TransactionResponse
+	4, // 7: ai.v1.AiWrapperService.BuildTransactionFromImage:output_type -> ai.v1.TransactionResponse
 	4, // [4:8] is the sub-list for method output_type
 	0, // [0:4] is the sub-list for method input_type
 	0, // [0:0] is the sub-list for extension type_name
@@ -475,7 +474,7 @@ func file_ai_v1_ai_proto_init() {
 			NumEnums:      0,
 			NumMessages:   7,
 			NumExtensions: 0,
-			NumServices:   2,
+			NumServices:   1,
 		},
 		GoTypes:           file_ai_v1_ai_proto_goTypes,
 		DependencyIndexes: file_ai_v1_ai_proto_depIdxs,
