@@ -24,7 +24,7 @@ message BuildTransactionFromTextRequest {
 
 message BuildTransactionFromImageRequest {
   bytes image_data = 1;
-  CategoryList categories = 2;
+  repeated string categories = 2;
 }
 
 message TransactionResponse {
