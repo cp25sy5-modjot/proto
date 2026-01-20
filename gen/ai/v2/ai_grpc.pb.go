@@ -28,10 +28,16 @@ const (
 // AiWrapperServiceClient is the client API for AiWrapperService service.
 //
 // For semantics around ctx use and closing/ending streaming RPCs, please refer to https://pkg.go.dev/google.golang.org/grpc/?tab=doc#ClientConn.NewStream.
+//
+// AI Wrapper Service Definition
 type AiWrapperServiceClient interface {
+	// / Performs a health check and returns the health status of the service.
 	Check(ctx context.Context, in *HealthCheckRequest, opts ...grpc.CallOption) (*HealthCheckResponse, error)
+	// / Extracts text from the provided image data.
 	ExtractTextFromImage(ctx context.Context, in *ExtractTextRequest, opts ...grpc.CallOption) (*ExtractTextResponse, error)
+	// / Builds a transaction from the provided text input.
 	BuildTransactionFromText(ctx context.Context, in *BuildTransactionFromTextRequest, opts ...grpc.CallOption) (*TransactionResponseV2, error)
+	// / Builds a transaction from the provided image data.
 	BuildTransactionFromImage(ctx context.Context, in *BuildTransactionFromImageRequest, opts ...grpc.CallOption) (*TransactionResponseV2, error)
 }
 
@@ -86,10 +92,16 @@ func (c *aiWrapperServiceClient) BuildTransactionFromImage(ctx context.Context, 
 // AiWrapperServiceServer is the server API for AiWrapperService service.
 // All implementations must embed UnimplementedAiWrapperServiceServer
 // for forward compatibility.
+//
+// AI Wrapper Service Definition
 type AiWrapperServiceServer interface {
+	// / Performs a health check and returns the health status of the service.
 	Check(context.Context, *HealthCheckRequest) (*HealthCheckResponse, error)
+	// / Extracts text from the provided image data.
 	ExtractTextFromImage(context.Context, *ExtractTextRequest) (*ExtractTextResponse, error)
+	// / Builds a transaction from the provided text input.
 	BuildTransactionFromText(context.Context, *BuildTransactionFromTextRequest) (*TransactionResponseV2, error)
+	// / Builds a transaction from the provided image data.
 	BuildTransactionFromImage(context.Context, *BuildTransactionFromImageRequest) (*TransactionResponseV2, error)
 	mustEmbedUnimplementedAiWrapperServiceServer()
 }

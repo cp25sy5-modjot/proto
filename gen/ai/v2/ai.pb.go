@@ -215,6 +215,7 @@ func (x *BuildTransactionFromImageRequest) GetCategories() []string {
 
 type TransactionResponseV2 struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
 	Date          string                 `protobuf:"bytes,2,opt,name=date,proto3" json:"date,omitempty"`
 	Type          string                 `protobuf:"bytes,3,opt,name=type,proto3" json:"type,omitempty"` // manual | upload
 	Items         []*TransactionItem     `protobuf:"bytes,4,rep,name=items,proto3" json:"items,omitempty"`
@@ -252,6 +253,13 @@ func (*TransactionResponseV2) Descriptor() ([]byte, []int) {
 	return file_ai_v2_ai_proto_rawDescGZIP(), []int{4}
 }
 
+func (x *TransactionResponseV2) GetTitle() string {
+	if x != nil {
+		return x.Title
+	}
+	return ""
+}
+
 func (x *TransactionResponseV2) GetDate() string {
 	if x != nil {
 		return x.Date
@@ -275,10 +283,9 @@ func (x *TransactionResponseV2) GetItems() []*TransactionItem {
 
 type TransactionItem struct {
 	state         protoimpl.MessageState `protogen:"open.v1"`
-	ItemId        string                 `protobuf:"bytes,1,opt,name=item_id,json=itemId,proto3" json:"item_id,omitempty"`
-	Title         string                 `protobuf:"bytes,2,opt,name=title,proto3" json:"title,omitempty"`
-	Price         float64                `protobuf:"fixed64,3,opt,name=price,proto3" json:"price,omitempty"`
-	Category      string                 `protobuf:"bytes,4,opt,name=category,proto3" json:"category,omitempty"`
+	Title         string                 `protobuf:"bytes,1,opt,name=title,proto3" json:"title,omitempty"`
+	Price         float64                `protobuf:"fixed64,2,opt,name=price,proto3" json:"price,omitempty"`
+	Category      string                 `protobuf:"bytes,3,opt,name=category,proto3" json:"category,omitempty"`
 	unknownFields protoimpl.UnknownFields
 	sizeCache     protoimpl.SizeCache
 }
@@ -311,13 +318,6 @@ func (x *TransactionItem) ProtoReflect() protoreflect.Message {
 // Deprecated: Use TransactionItem.ProtoReflect.Descriptor instead.
 func (*TransactionItem) Descriptor() ([]byte, []int) {
 	return file_ai_v2_ai_proto_rawDescGZIP(), []int{5}
-}
-
-func (x *TransactionItem) GetItemId() string {
-	if x != nil {
-		return x.ItemId
-	}
-	return ""
 }
 
 func (x *TransactionItem) GetTitle() string {
@@ -457,16 +457,16 @@ const file_ai_v2_ai_proto_rawDesc = "" +
 	"image_data\x18\x01 \x01(\fR\timageData\x12\x1e\n" +
 	"\n" +
 	"categories\x18\x02 \x03(\tR\n" +
-	"categories\"m\n" +
-	"\x15TransactionResponseV2\x12\x12\n" +
+	"categories\"\x83\x01\n" +
+	"\x15TransactionResponseV2\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12\x12\n" +
 	"\x04date\x18\x02 \x01(\tR\x04date\x12\x12\n" +
 	"\x04type\x18\x03 \x01(\tR\x04type\x12,\n" +
-	"\x05items\x18\x04 \x03(\v2\x16.ai.v1.TransactionItemR\x05items\"r\n" +
-	"\x0fTransactionItem\x12\x17\n" +
-	"\aitem_id\x18\x01 \x01(\tR\x06itemId\x12\x14\n" +
-	"\x05title\x18\x02 \x01(\tR\x05title\x12\x14\n" +
-	"\x05price\x18\x03 \x01(\x01R\x05price\x12\x1a\n" +
-	"\bcategory\x18\x04 \x01(\tR\bcategory\"(\n" +
+	"\x05items\x18\x04 \x03(\v2\x16.ai.v1.TransactionItemR\x05items\"Y\n" +
+	"\x0fTransactionItem\x12\x14\n" +
+	"\x05title\x18\x01 \x01(\tR\x05title\x12\x14\n" +
+	"\x05price\x18\x02 \x01(\x01R\x05price\x12\x1a\n" +
+	"\bcategory\x18\x03 \x01(\tR\bcategory\"(\n" +
 	"\x12HealthCheckRequest\x12\x12\n" +
 	"\x04name\x18\x01 \x01(\tR\x04name\"I\n" +
 	"\x13HealthCheckResponse\x12\x18\n" +

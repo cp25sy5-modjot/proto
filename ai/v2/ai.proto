@@ -3,10 +3,15 @@ syntax = "proto3";
 package ai.v1;
 option go_package = "github.com/cp25sy5-modjot/proto/gen/ai/v1;aiwpb";
 
+// AI Wrapper Service Definition
 service AiWrapperService {
+  /// Performs a health check and returns the health status of the service.
   rpc Check(HealthCheckRequest) returns (HealthCheckResponse);
+  /// Extracts text from the provided image data.
   rpc ExtractTextFromImage(ExtractTextRequest) returns (ExtractTextResponse);
+  /// Builds a transaction from the provided text input.
   rpc BuildTransactionFromText(BuildTransactionFromTextRequest) returns (TransactionResponseV2);
+  /// Builds a transaction from the provided image data.
   rpc BuildTransactionFromImage(BuildTransactionFromImageRequest) returns (TransactionResponseV2);
 }
 
@@ -29,16 +34,16 @@ message BuildTransactionFromImageRequest {
 }
 
 message TransactionResponseV2 {
+  string title = 1;
   string date = 2;        
   string type = 3; // manual | upload
   repeated TransactionItem items = 4;
 }
 
 message TransactionItem {
-  string item_id = 1;
-  string title = 2;
-  double price = 3;
-  string category = 4;
+  string title = 1;
+  double price = 2;
+  string category = 3;
 }
 
 message HealthCheckRequest {
